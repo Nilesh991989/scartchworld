@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ScartchWorld</string>
+    <string name="maxAttemptHint">Add Number Of Prizes</string>
+</resources>
