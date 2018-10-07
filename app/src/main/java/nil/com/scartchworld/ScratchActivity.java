@@ -80,24 +80,9 @@ public class ScratchActivity extends AppCompatActivity {
 
     private void checkForEndOfAttempts() {
         if(remainingAttemptFromTotalAttempt == 0){
-            AlertDialog.Builder builder = new AlertDialog.Builder(
-                    getApplicationContext());
-            builder.setCancelable(false);
-            builder.setTitle("Your 100 attempt are over. Click OK to reset application");
-            builder.setInverseBackgroundForced(true);
-            builder.setPositiveButton("Exit",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            dialog.dismiss();
-                            databaseHelper.dropTable();
-                            Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(mainActivityIntent);
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
+            databaseHelper.dropTable();
+            Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(mainActivityIntent);
         }
     }
 
@@ -144,6 +129,7 @@ public class ScratchActivity extends AppCompatActivity {
             if(randomModPrizes.get(bucket).equals(R.drawable.win)){
                 winFlag = true;
                 randomModPrizes.add(bucket,R.drawable.lose);
+                databaseHelper.addKeyValue("randomModPrizes",randomModPrizes.toString());
                 return R.drawable.win;
             }else{
                 return R.drawable.lose;
@@ -224,8 +210,8 @@ public class ScratchActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         if(doubleBackToExitPressedOnce){
-            finish();
-            System.exit(0);
+            super.onBackPressed();
+            return;
         }
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this,"Please click BACK again to exit",Toast.LENGTH_SHORT).show();

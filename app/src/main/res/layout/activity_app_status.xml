@@ -4,49 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activityBackground"
     tools:context=".AppStatusActivity">
 
     <TextView
         android:id="@+id/remainingAttemptStatus"
-        android:layout_width="262dp"
-        android:layout_height="39dp"
-        android:maxLines="5"
-        android:layout_alignParentStart="true"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="19dp"
+        android:maxLines="5"
         android:text="TextView"
         android:textColor="#000d23" />
 
     <TextView
         android:id="@+id/remainingWinAttempt"
-        android:layout_width="259dp"
-        android:layout_height="36dp"
-        android:maxLines="5"
+        android:layout_width="359dp"
+        android:layout_height="49dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/remainingAttemptStatus"
         android:layout_marginTop="97dp"
+        android:maxLines="5"
         android:text="TextView"
         android:textColor="#000d23" />
 
     <TextView
         android:id="@+id/statusStartActivityDate"
-        android:layout_width="259dp"
-        android:layout_height="40dp"
-        android:maxLines="5"
+        android:layout_width="356dp"
+        android:layout_height="39dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/remainingAttemptStatus"
         android:layout_marginTop="165dp"
+        android:maxLines="5"
         android:text="TextView"
         android:textColor="#000d23" />
 
     <TextView
         android:id="@+id/statusUpdateActivityDate"
-        android:layout_width="257dp"
-        android:layout_height="37dp"
+        android:layout_width="354dp"
+        android:layout_height="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="222dp"
         android:maxLines="5"
-        android:layout_alignStart="@+id/remainingAttemptStatus"
-        android:layout_centerVertical="true"
         android:text="TextView"
         android:textColor="#000d23" />
+
+    <Button
+        android:id="@+id/appStatusButton"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="149dp"
+        android:layout_marginStart="87dp"
+        android:background="@color/buttonColor"
+        android:onClick="reset"
+        android:text="Reset" />
 </RelativeLayout>

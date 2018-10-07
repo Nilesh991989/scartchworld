@@ -56,20 +56,28 @@ public class MainActivity extends AppCompatActivity {
 
         String value = databaseHelper.getValue("maxAttempts");
         if(value !=null &&  Integer.valueOf(value) > 0){
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String startActivityDate = simpleDateFormat.format(new Date());
-            databaseHelper.addKeyValue("startActivityDate",startActivityDate);
             Intent scarchViewIntent = new Intent(getApplicationContext(),ScratchActivity.class);
             startActivity(scarchViewIntent);
         }
     }
 
     public void nextActivity(View view){
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String startActivityDate = simpleDateFormat.format(new Date());
+        databaseHelper.addKeyValue("startActivityDate",startActivityDate);
         databaseHelper.addKeyValue("maxAttempts",maxAttempts.getText().toString());
         databaseHelper.addKeyValue("remainingAttemptFromTotalAttempt",Integer.toString(100));
-        Intent scarchViewIntent = new Intent(getApplicationContext(),ScratchActivity.class);
-        startActivity(scarchViewIntent);
+        Intent scratchViewIntent = new Intent(getApplicationContext(),ScratchActivity.class);
+        startActivity(scratchViewIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String value = databaseHelper.getValue("maxAttempts");
+        if(value != null){
+            super.onBackPressed();
+        }
     }
 
     @Override

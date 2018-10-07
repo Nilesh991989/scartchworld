@@ -58,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void dropTable(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String rawQuery = "drop table " + DATABASE_NAME + "." + TABLE_NAME;
-        db.rawQuery(rawQuery,null);
+        db.delete(TABLE_NAME,null,null);
     }
 }

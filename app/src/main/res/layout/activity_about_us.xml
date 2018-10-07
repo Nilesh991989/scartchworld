@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/activityBackground"
     android:layout_height="match_parent"
     tools:context=".AboutUsActivity">
 
@@ -11,7 +12,7 @@
         android:layout_width="315dp"
         android:layout_height="158dp"
         android:text="TextView"
-        android:maxLines="10"
+        android:maxLines="25"
         android:textColor="#000d23"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="16dp" />
