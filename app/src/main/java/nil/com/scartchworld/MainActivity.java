@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import nil.com.scartchworld.helper.database.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
         String value = databaseHelper.getValue("maxAttempts");
         if(value !=null &&  Integer.valueOf(value) > 0){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String startActivityDate = simpleDateFormat.format(new Date());
+            databaseHelper.addKeyValue("startActivityDate",startActivityDate);
             Intent scarchViewIntent = new Intent(getApplicationContext(),ScratchActivity.class);
             startActivity(scarchViewIntent);
         }

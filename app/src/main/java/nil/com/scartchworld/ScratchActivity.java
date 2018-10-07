@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.cooltechworks.views.ScratchImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -40,6 +42,10 @@ public class ScratchActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scratch);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String updateActivityDate = simpleDateFormat.format(new Date());
+        databaseHelper.addKeyValue("updateActivityDate",updateActivityDate);
 
         getInitialProperties();
         per10Set = (10 * maxAttempts) / TOTAL_ATTEMPT;
@@ -77,7 +83,7 @@ public class ScratchActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     getApplicationContext());
             builder.setCancelable(false);
-            builder.setTitle("Your 100 attempt are over. Please download application again");
+            builder.setTitle("Your 100 attempt are over. Click OK to reset application");
             builder.setInverseBackgroundForced(true);
             builder.setPositiveButton("Exit",
                     new DialogInterface.OnClickListener() {
@@ -85,8 +91,9 @@ public class ScratchActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog,
                                             int which) {
                             dialog.dismiss();
-                            finish();
-                            System.exit(0);
+                            databaseHelper.dropTable();
+                            Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(mainActivityIntent);
                         }
                     });
             AlertDialog alert = builder.create();
@@ -135,6 +142,7 @@ public class ScratchActivity extends AppCompatActivity {
 
         if(prizeCounter >= per10Set){
             if(randomModPrizes.get(bucket).equals(R.drawable.win)){
+                winFlag = true;
                 randomModPrizes.add(bucket,R.drawable.lose);
                 return R.drawable.win;
             }else{
@@ -240,6 +248,12 @@ public class ScratchActivity extends AppCompatActivity {
         switch (menuItem.getItemId()){
             case R.id.menuAppStatus:
                 startActivity(new Intent(this, AppStatusActivity.class));
+                return true;
+            case R.id.menuContactUs:
+                startActivity(new Intent(this, AboutUsActivity.class));
+                return true;
+            case R.id.menuShare:
+                startActivity(new Intent(this, ShareActivity.class));
                 return true;
             default:
                 startActivity(new Intent(this, ScratchActivity.class));

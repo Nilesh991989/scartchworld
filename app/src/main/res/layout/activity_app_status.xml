@@ -10,15 +10,43 @@
         android:id="@+id/remainingAttemptStatus"
         android:layout_width="262dp"
         android:layout_height="39dp"
+        android:maxLines="5"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-         android:layout_marginTop="25dp"
-        android:text="TextView" />
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="23dp"
+        android:text="TextView"
+        android:textColor="#000d23" />
 
     <TextView
         android:id="@+id/remainingWinAttempt"
         android:layout_width="259dp"
         android:layout_height="36dp"
+        android:maxLines="5"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="101dp"
-        android:text="TextView" />
+        android:layout_alignStart="@+id/remainingAttemptStatus"
+        android:layout_marginTop="97dp"
+        android:text="TextView"
+        android:textColor="#000d23" />
+
+    <TextView
+        android:id="@+id/statusStartActivityDate"
+        android:layout_width="259dp"
+        android:layout_height="40dp"
+        android:maxLines="5"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/remainingAttemptStatus"
+        android:layout_marginTop="165dp"
+        android:text="TextView"
+        android:textColor="#000d23" />
+
+    <TextView
+        android:id="@+id/statusUpdateActivityDate"
+        android:layout_width="257dp"
+        android:layout_height="37dp"
+        android:maxLines="5"
+        android:layout_alignStart="@+id/remainingAttemptStatus"
+        android:layout_centerVertical="true"
+        android:text="TextView"
+        android:textColor="#000d23" />
 </RelativeLayout>

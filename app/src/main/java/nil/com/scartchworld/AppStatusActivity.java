@@ -20,10 +20,22 @@ public class AppStatusActivity extends AppCompatActivity {
         int winRemainingAttempt = getIntValue(databaseHelper.getValue("winRemainingAttempt"));
 
         TextView remainingAttempts =  findViewById(R.id.remainingAttemptStatus);
-        remainingAttempts.setText(String.format("Remaining attempts are %d / %d", remainingAttemptFromTotalAttempt,100));
+        remainingAttempts.setText(String.format("Remaining Attempts : %d / %d", remainingAttemptFromTotalAttempt,100));
+        remainingAttempts.setTextSize(20);
 
         TextView remainingWinAttempts =  findViewById(R.id.remainingWinAttempt);
-        remainingWinAttempts.setText(String.format("Remaining win attempts are %d / %d", winRemainingAttempt,maxAttempts));
+        remainingWinAttempts.setText(String.format("Remaining Win Attempts : %d / %d", winRemainingAttempt,maxAttempts));
+        remainingWinAttempts.setTextSize(20);
+
+        TextView statusStartActivityDate = findViewById(R.id.statusStartActivityDate);
+        String startActivityDate = databaseHelper.getValue("startActivityDate");
+        statusStartActivityDate.setText(String.format("Start Activity Date : %ss",startActivityDate));
+        statusStartActivityDate.setTextSize(20);
+
+        TextView statusUpdateActivityDate = findViewById(R.id.statusUpdateActivityDate);
+        String updateActivityDate = databaseHelper.getValue("updateActivityDate");
+        statusUpdateActivityDate.setText(String.format("Update Activity Date : %ss",updateActivityDate));
+        statusUpdateActivityDate.setTextSize(20);
     }
 
     private int getIntValue(String value) {

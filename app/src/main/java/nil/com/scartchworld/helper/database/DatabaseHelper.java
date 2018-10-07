@@ -55,4 +55,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return value;
     }
+
+    public void dropTable(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String rawQuery = "drop table " + DATABASE_NAME + "." + TABLE_NAME;
+        db.rawQuery(rawQuery,null);
+    }
 }

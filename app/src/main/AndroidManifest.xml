@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScratchActivity" />
-        <activity android:name=".AppStatusActivity"></activity>
+        <activity android:name=".AppStatusActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".ShareActivity"></activity>
     </application>
 
 </manifest>
