@@ -10,8 +10,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.amazon.device.ads.AdLayout;
+import com.amazon.device.ads.AdRegistration;
+import com.amazon.device.ads.AdTargetingOptions;
 import com.cooltechworks.views.ScratchImageView;
 
 import java.text.SimpleDateFormat;
@@ -35,17 +39,19 @@ public class ScratchActivity extends AppCompatActivity {
     private int prizeCounter;
     private boolean revealed = false;
     private boolean winFlag= false;
-
+    private AdLayout adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         databaseHelper = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scratch);
+        AdRegistration.setAppKey("b39b016efe10496ab92e772c8dae5564");
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String updateActivityDate = simpleDateFormat.format(new Date());
         databaseHelper.addKeyValue("updateActivityDate",updateActivityDate);
+        showBannerAdds();
 
         getInitialProperties();
         per10Set = (10 * maxAttempts) / TOTAL_ATTEMPT;
@@ -247,4 +253,16 @@ public class ScratchActivity extends AppCompatActivity {
         }
     }
 
+    public void showBannerAdds(){
+        this.adView = (AdLayout) findViewById(R.id.adview);
+        AdTargetingOptions adOptions = new AdTargetingOptions();
+        this.adView.loadAd(adOptions);
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        this.adView.destroy();
+    }
 }

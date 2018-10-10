@@ -15,5 +15,5 @@
         android:maxLines="25"
         android:textColor="#000d23"
         tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp" />mani
 </android.support.constraint.ConstraintLayout>
