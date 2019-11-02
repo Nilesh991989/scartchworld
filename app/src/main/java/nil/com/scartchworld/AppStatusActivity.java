@@ -1,5 +1,7 @@
 package nil.com.scartchworld;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,9 +43,27 @@ public class AppStatusActivity extends AppCompatActivity {
     }
 
     public void reset(View view){
-        databaseHelper.dropTable();
-        Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(mainActivityIntent);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AppStatusActivity.this);
+        alertBuilder.setTitle("Confirm");
+        alertBuilder.setMessage("Are you sure");
+        alertBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                databaseHelper.dropTable();
+                Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(mainActivityIntent);
+            }
+        });
+
+        alertBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = alertBuilder.create();
+        alert.show();
     }
 
     private int getIntValue(String value) {
